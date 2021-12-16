@@ -1,23 +1,19 @@
-# Dockerized Streamlit App
+# Dockerized Streamlit App requesting FastAPI app
 
-This is just a simple dockerized streamlit setup. From here, you can built in your own app and take advantage of containerization.
+This is just a simple dockerized streamlit and FastAPI setup. From here, you can built in your own app and take advantage of containerization.
 
 ## Quick start
 
-Build the image
+Spin it all up
 
 ```sh
-docker build -t streamlitapp .
+docker compose up
 ```
 
-Run the container
+In your browser, attend 127.0.0.1:8501 and see the streamlit app alive.
+
+And to bring it all down
 
 ```sh
-docker run -p 8501:8501 streamlitapp:latest
+docker compose down
 ```
-
-In your browser, attend 127.0.0.1:8501 and see the streamlit app alive
-
-## Docker setup
-
-The `Dockerfile` is a multistage file which uses the `python:3.8` image for building dependencies and the `python:3.8-slim` image for sourcing the app. The final image size is `505MB`.

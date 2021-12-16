@@ -1,0 +1,30 @@
+# STAGE: Build ----------------------------------------------------------------
+# In this stage we build the foundation of the final image. We compile the
+# libraries needed for the model.
+# --------------------------------------------------------------------- (BEGIN)
+FROM python:3.8 AS build
+COPY requirements.txt requirements.txt
+RUN pip install --user --no-cache-dir --no-warn-script-location -r requirements.txt
+# ----------------------------------------------------------------------- (END)
+
+
+# STAGE: Source ---------------------------------------------------------------
+# In this stage we copy the compiled libraries from the build stage and we copy
+# the source files.
+# --------------------------------------------------------------------- (BEGIN)
+FROM python:3.8-slim AS source
+ENV PATH=/root/.local/bin:$PATH
+WORKDIR /app
+COPY --from=build /root/.local /root/.local
+COPY . .
+# ----------------------------------------------------------------------- (END)
+
+
+# STAGE: Production -----------------------------------------------------------
+# This stage is built upon the source stage. In this stage we launch the
+# FastAPI endpoints through uvicorn.
+# --------------------------------------------------------------------- (BEGIN)
+FROM source AS production
+EXPOSE 5000
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
+# ----------------------------------------------------------------------- (END)
