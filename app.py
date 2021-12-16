@@ -1,58 +1,42 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from numpy.random import random
 
 
 class Model:
     def __init__(self):
-        self.df = pd.DataFrame(px.data.gapminder())
-        self.ylist = [int(i) for i in self.df["year"].unique()]
-        self.yearStart = self.ylist[0]
-        self.yearEnd = self.ylist[-1]
-        self.yearStep = self.ylist[1] - self.ylist[0]
+        self.min = 1
+        self.max = 10
+        self.step = 1
 
-    def chart(self, year):
+    def chart(self, nums):
         return px.scatter(
-            self.df[self.df["year"] == year],
-            x="lifeExp",
-            y="gdpPercap",
-            title=f"Year: {year}",
-            color="continent",
-            size="pop",
+            pd.DataFrame({"x": random(nums), "y": random(nums)}), x="x", y="y"
         )
 
-    header = "Global Statistics from Gapminder"
+    header = "Random numbers served from an API"
     description = """
-      See how life expectancy changes over time
-      and in relation to GDP.
-      Move the slider to change the year to display.
-   """
-    sliderCaption = "Select the year for the chart"
+    These numbers are all fed to you by an external API. The API is built with FastAPI.
+    """
+    sliderCaption = "Select number of random points"
 
 
 def view(model):
-    st.set_page_config(layout="wide")
-    commentaryCol, spaceCol, chartCol = st.columns((2, 1, 6))
-
     # Header
     st.header(model.header)
 
-    # Description
-    with commentaryCol:
-        st.write(model.description)
+    st.write(model.description)
 
-    # Year Slider
-    year = st.slider(
+    nums = st.slider(
         model.sliderCaption,
-        model.yearStart,
-        model.yearEnd,
-        model.yearStart,
-        model.yearStep,
+        model.min,
+        model.max,
+        model.min,
+        model.step,
     )
 
-    # Chart
-    with chartCol:
-        st.plotly_chart(model.chart(year), use_container_width=True)
+    st.plotly_chart(model.chart(nums), use_container_width=True)
 
 
 m = Model()
