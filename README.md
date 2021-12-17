@@ -121,4 +121,4 @@ The _service name_ for the FastAPI app is the host name needed in the `requests.
 
 Any help or feedback are very welcome! 👋🏼
 
--   https://github.com/VildMedPap/containerized-streamlit-and-fastapi-app
+-   https://github.com/VildMedPap/containerized-streamlit-and-fastapi-app/issues
