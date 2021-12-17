@@ -8,6 +8,7 @@
         -   [FastAPI app](#fastapi-app)
         -   [Streamlit app](#streamlit-app)
         -   [Multi-container Docker app](#multi-container-docker-app)
+-   [Issues and Feature Request](#issues-and-feature-request)
 
 ## Description
 
@@ -115,3 +116,9 @@ It would be good practice to explicitly state a network name, making the contain
 The _service name_ for the FastAPI app is the host name needed in the `requests.get()` method in `streamlit/app.py`:
 
 ![Host name](media/host-name.png)
+
+## Issues and Feature Request
+
+Any help or feedback are very welcome! 👋🏼
+
+-   https://github.com/VildMedPap/dockerized_streamlit_app/issues
