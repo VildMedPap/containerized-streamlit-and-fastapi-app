@@ -3,6 +3,7 @@
 # libraries needed for the model.
 # --------------------------------------------------------------------- (BEGIN)
 FROM python:3.8 AS build
+WORKDIR /setup
 COPY requirements.txt requirements.txt
 RUN pip install --user --no-cache-dir --no-warn-script-location -r requirements.txt
 # ----------------------------------------------------------------------- (END)

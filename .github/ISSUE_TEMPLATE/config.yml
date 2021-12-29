@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+    - name: General questions regarding FastAPI
+      url: https://github.com/tiangolo/fastapi
+      about: "If you have a general FastAPI question then please ask on the FastAPI repo."
+    - name: General questions regarding Streamlit
+      url: https://github.com/streamlit/streamlit
+      about: "If you have a general Streamlit question then please ask on the Streamlit repo."
+    - name: General questions regarding Docker (compose)
+      url: https://github.com/docker/compose
+      about: "If you have a general Docker (compose) question then please ask on the Docker (compose) repo."
